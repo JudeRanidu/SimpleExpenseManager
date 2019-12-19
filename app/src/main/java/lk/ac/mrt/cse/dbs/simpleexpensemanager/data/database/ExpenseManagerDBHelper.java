@@ -27,7 +27,13 @@ public class ExpenseManagerDBHelper extends SQLiteOpenHelper {
 
     public void onCreate(SQLiteDatabase db){
         db.execSQL("create table "+tb1_Name+" ("+tb1_col1+" VARCHAR(20) PRIMARY KEY, "+tb1_col2+" VARCHAR(40) , "+tb1_col3+" VARCHAR(40), "+tb1_col4+" DOUBLE)");
-        db.execSQL("create table "+tb2_Name+" ("+tb2_col1+" INTEGER PRIMARY KEY AUTOINCREMENT, "+tb2_col2+" date, "+tb2_col3+" VARCHAR(20) , "+tb2_col4+" VARCHAR(20), "+tb2_col5+" DOUBLE, FOREIGN KEY("+tb2_col3+") REFERENCES("+tb1_Name+"))");
+        db.execSQL("create table "+tb2_Name+" ("+
+                tb2_col1+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                tb2_col2+" date, "+
+                tb2_col3+" VARCHAR(20) , "+
+                tb2_col4+" VARCHAR(20), "+
+                tb2_col5+" DOUBLE, FOREIGN KEY("+
+                tb2_col3+") REFERENCES "+tb1_Name+" ("+tb1_col1+"))");
     }
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
 

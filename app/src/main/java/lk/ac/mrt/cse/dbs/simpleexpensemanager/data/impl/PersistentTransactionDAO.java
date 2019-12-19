@@ -23,7 +23,7 @@ public class PersistentTransactionDAO implements TransactionDAO {
 
     @Override
     public void logTransaction(Date date, String accountNo, ExpenseType expenseType, double amount) {
-        String query = "INSERT into transactions VALUES(?,?,?,?)";
+        String query = "INSERT into transactions ('date','accountNo','expenseType','amount') VALUES(?,?,?,?)";
         SQLiteStatement statement = DB.compileStatement(query);
         statement.bindString(1,date.toString());
         statement.bindString(2,accountNo);
@@ -50,7 +50,7 @@ public class PersistentTransactionDAO implements TransactionDAO {
 
     @Override
     public List<Transaction> getPaginatedTransactionLogs(int limit) {
-        String query = "SELECT * FROM transactions ORDER BY date DESC "+limit+"";
+        String query = "SELECT * FROM transactions LIMIT "+limit;
         Cursor cursor = DB.rawQuery(query,null);
         List<Transaction> PaginatedTransactionLogs = new ArrayList();
         while(cursor.moveToNext()){

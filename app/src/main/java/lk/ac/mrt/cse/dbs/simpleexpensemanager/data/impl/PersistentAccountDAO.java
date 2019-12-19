@@ -49,7 +49,7 @@ public class PersistentAccountDAO implements AccountDAO {
 
     @Override
     public Account getAccount(String accountNo) throws InvalidAccountException {
-        String query = "SELECT * from accounts where accountNO=accountNo";
+        String query = "SELECT * from accounts where accountNO='" +accountNo+ "';" ;
         Cursor cursor = DB.rawQuery(query,null);
         if(cursor.getCount()==0){
             String message = "No such Account Exists";
